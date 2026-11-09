@@ -37,7 +37,8 @@ public class Ventilator {
 			// TODO connect to server
 			
 			// TODO register with the server
-			Areas area=Areas.valueOf(args[2]);
+			Areas area = Utils.lerArea(args[2]);
+			   if (area == null) return;
 			
 			JFrame janela = new JFrame("Ventilador em "+area);
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

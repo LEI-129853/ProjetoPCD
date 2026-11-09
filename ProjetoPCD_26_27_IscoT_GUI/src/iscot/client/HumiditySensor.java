@@ -27,7 +27,8 @@ public class HumiditySensor {
 			// TODO connect to the server
 
 			// TODO register with the server
-			Areas area=Areas.valueOf(args[2]);
+			Areas area = Utils.lerArea(args[2]);
+			   if (area == null) return;
 			
 
 			JFrame janela = new JFrame("Humidade em "+area);
