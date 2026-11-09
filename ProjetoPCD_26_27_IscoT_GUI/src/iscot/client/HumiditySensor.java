@@ -7,6 +7,8 @@ import iscot.client.gui.LightIcon;
 import iscot.client.gui.SensorControl;
 import iscot.enums.Areas;
 import iscot.enums.Type;
+import iscot.events.HumiditySensorEvent;
+import iscot.events.SensorEvent;
 
 public class HumiditySensor {
 
@@ -19,6 +21,11 @@ public class HumiditySensor {
 	 * @throws NumberFormatException 
 	 * @throws InterruptedException 
 	 */
+	
+	private static void publicar(SensorEvent evento) {
+		System.out.println("Publicado: " + evento);
+	}
+	
 	public static void main(String[] args) throws NumberFormatException, InterruptedException {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
@@ -40,9 +47,7 @@ public class HumiditySensor {
 			painel.setLayout(new BorderLayout());
 			SensorControl sensorControl= new SensorControl( "💧", "Humidade - "+area, "%",
 				    0, 100, 1, 50,
-				    valor -> {
-				    	// TODO handle change in sensor
-				    	System.out.println("Humidade mudou para:"+valor);
+				    valor -> { publicar(new HumiditySensorEvent(area, valor));
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);

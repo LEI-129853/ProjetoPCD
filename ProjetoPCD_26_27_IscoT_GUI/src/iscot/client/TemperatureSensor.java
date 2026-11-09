@@ -7,9 +7,15 @@ import javax.swing.JPanel;
 
 import iscot.client.gui.SensorControl;
 import iscot.enums.Areas;
+import iscot.events.SensorEvent;
+import iscot.events.TemperatureSensorEvent;
 
 public class TemperatureSensor {
 
+	private static void publicar(SensorEvent evento) {
+		System.out.println("Publicado: " + evento);
+	}
+	
 	public static void main(String[] args) {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
@@ -31,9 +37,7 @@ public class TemperatureSensor {
 			painel.setLayout(new BorderLayout());
 			SensorControl sensorControl= new SensorControl("🌡", "Temperatura - " + area, "°C",
 					-10, 50, 0.5, 20,
-				    valor -> {
-				    	// TODO handle change in sensor
-				    	System.out.println("Temperatura mudou para:"+valor);
+				    valor -> { publicar(new TemperatureSensorEvent(area, valor));
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);
