@@ -27,7 +27,8 @@ public class HumiditySensor {
 			// TODO connect to the server
 
 			// TODO register with the server
-			Areas area=Areas.valueOf(args[2]);
+			Areas area = Utils.lerArea(args[2]);
+			   if (area == null) return;
 			
 
 			JFrame janela = new JFrame("Humidade em "+area);
@@ -37,11 +38,11 @@ public class HumiditySensor {
 			// Criar os componentes gráficos
 			JPanel painel=new JPanel();
 			painel.setLayout(new BorderLayout());
-			SensorControl sensorControl= new SensorControl( "☀", "Humidade - "+area, "%",
+			SensorControl sensorControl= new SensorControl( "💧", "Humidade - "+area, "%",
 				    0, 100, 1, 50,
 				    valor -> {
 				    	// TODO handle change in sensor
-				    	System.out.println("Mudou para:"+valor);
+				    	System.out.println("Humidade mudou para:"+valor);
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);
