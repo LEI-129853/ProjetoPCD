@@ -43,4 +43,5 @@ public class iscot {
 
 		System.out.println(ip + " " + port + " " + area + " " + type);
 	}
+	
 }
