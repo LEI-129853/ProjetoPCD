@@ -7,9 +7,17 @@ import javax.swing.JPanel;
 
 import iscot.client.gui.SensorControl;
 import iscot.enums.Areas;
+import iscot.events.LightSensorEvent;
+import iscot.events.SensorEvent;
 
 public class LightSensor {
 
+	
+	private static void publicar(SensorEvent evento) {
+		System.out.println("Publicado: " + evento);
+	}
+	
+	
 	public static void main(String[] args) {
 		if(args.length!=3) {
 			System.err.println("Invalid arguments!");
@@ -31,9 +39,7 @@ public class LightSensor {
 			painel.setLayout(new BorderLayout());
 			SensorControl sensorControl= new SensorControl( "☀", "Luz - "+area, "lux",
 				    0, 1000, 10, 500,
-				    valor -> {
-				    	// TODO handle change in sensor
-				    	System.out.println("Luz mudou para:"+valor);
+				    valor -> { publicar(new LightSensorEvent(area, valor));
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);
