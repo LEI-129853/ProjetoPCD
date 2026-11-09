@@ -42,7 +42,7 @@ public class HumiditySensor {
 				    0, 100, 1, 50,
 				    valor -> {
 				    	// TODO handle change in sensor
-				    	System.out.println("Mudou para:"+valor);
+				    	System.out.println("Humidade mudou para:"+valor);
 				    });
 			painel.add(sensorControl,BorderLayout.CENTER);
 			janela.setContentPane(painel);

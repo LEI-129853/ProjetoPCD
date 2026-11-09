@@ -1,0 +1,49 @@
+package iscot.client;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import iscot.client.gui.SensorControl;
+import iscot.enums.Areas;
+
+public class TemperatureSensor {
+
+	public static void main(String[] args) {
+		if(args.length!=3) {
+			System.err.println("Invalid arguments!");
+		}
+		else {
+			// TODO connect to the server
+
+			// TODO register with the server
+			Areas area = Utils.lerArea(args[2]);
+			   if (area == null) return;
+			
+
+			JFrame janela = new JFrame("Temperatura em "+area);
+			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+			
+			// Criar os componentes gráficos
+			JPanel painel=new JPanel();
+			painel.setLayout(new BorderLayout());
+			SensorControl sensorControl= new SensorControl("🌡", "Temperatura - " + area, "°C",
+					-10, 50, 0.5, 20,
+				    valor -> {
+				    	// TODO handle change in sensor
+				    	System.out.println("Temperatura mudou para:"+valor);
+				    });
+			painel.add(sensorControl,BorderLayout.CENTER);
+			janela.setContentPane(painel);
+			janela.setLocation(600, 400);
+			janela.setMinimumSize(janela.getSize());
+			janela.pack();
+			janela.setVisible(true);
+			
+		}
+
+	}
+
+}
