@@ -32,7 +32,6 @@ public class TemperatureSensor {
 			janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			
-			// Criar os componentes gráficos
 			JPanel painel=new JPanel();
 			painel.setLayout(new BorderLayout());
 			SensorControl sensorControl= new SensorControl("🌡", "Temperatura - " + area, "°C",
